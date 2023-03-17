@@ -19,8 +19,6 @@ public class Main {
 		Concurso miConcurso = new Concurso("Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion);
 //		System.out.println(miConcurso);
 		
-		
-		
 		try {
 			miConcurso.inscribirParticipante(primerParticipante);
 			miConcurso.inscribirParticipante(primerParticipante);

@@ -1,11 +1,10 @@
-package Modelo;
+package modelo;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
-import Exceptions.ConcursoExceptions;
+import exceptions.ConcursoExceptions;
 
 public class Concurso {
 
@@ -22,7 +21,6 @@ public class Concurso {
 		this.lista_participante = new HashSet<Cupo>();
 	}
 
-	@Override
 	public String toString() {
 		return "Concurso [nombre=" + nombre + ", inicio_inscripcion=" + inicio_inscripcion + ", fin_inscripcion="
 				+ fin_inscripcion + ", lista_participante=" + lista_participante + "]";
@@ -31,28 +29,28 @@ public class Concurso {
 	public void inscribirParticipante(Participante nuevo_articipante) throws ConcursoExceptions {
 		LocalDate fecha_actual = LocalDate.now();
 
-		if(!estaInscripto(nuevo_articipante)) {
+		if (!estaInscripto(nuevo_articipante)) {
 			if (estaEnRangoDeInscripcion(fecha_actual)) {
-				
+
 				Cupo nuevoCupo = new Cupo(nuevo_articipante);
-				
-				if(inscripcionElPrimerDia(fecha_actual)) {
+
+				if (inscripcionElPrimerDia(fecha_actual)) {
 					nuevoCupo.sumarPuntos(10);
 				}
 				lista_participante.add(nuevoCupo);
 			} else {
-				throw new ConcursoExceptions("No se pudo inscribir participante. Fuera del las fechas limites de inscripcion");
+				throw new ConcursoExceptions(
+						"No se pudo inscribir participante. Fuera del las fechas limites de inscripcion");
 			}
 		} else {
 			throw new ConcursoExceptions("Participante ya inscripto");
 		}
-		
+
 	}
 
-
-	private boolean estaInscripto(Participante nuevo_articipante) {
+	public boolean estaInscripto(Participante nuevo_articipante) {
 		for (Cupo cupo : lista_participante) {
-			if(cupo.perteneceA(nuevo_articipante)) {
+			if (cupo.perteneceA(nuevo_articipante)) {
 				return true;
 			}
 		}
@@ -68,19 +66,19 @@ public class Concurso {
 	private boolean inscripcionElPrimerDia(LocalDate fecha_actual) {
 		return (inicio_inscripcion.compareTo(fecha_actual) == 0);
 	}
-	
+
 	private boolean inscripcionDiaFinal(LocalDate fecha_actual) {
 		return (fin_inscripcion.compareTo(fecha_actual) == 0);
 	}
 
 	public int verPuntajeAcumulado(Participante participante) throws ConcursoExceptions {
-		if(estaInscripto(participante)) {
+		if (estaInscripto(participante)) {
 			for (Cupo cupo : lista_participante) {
-				if(cupo.perteneceA(participante)) {
+				if (cupo.perteneceA(participante)) {
 					return cupo.cantidadPuntos();
 				}
 			}
 		}
-		throw new ConcursoExceptions("Participante no pertenece al concurso");
+		return -1; // si retorna -1 significa que el participante no esta inscripto
 	}
 }

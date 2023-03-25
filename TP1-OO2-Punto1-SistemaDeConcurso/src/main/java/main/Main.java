@@ -17,7 +17,7 @@ public class Main {
 		LocalDate fecha_inicio_inscripcion = fecha.plusDays(-8);
 		LocalDate fecha_fin_inscripcion = fecha.plusDays(2);
 
-		System.out.println(fecha_inicio_inscripcion + " " + fecha_fin_inscripcion);
+//		System.out.println(fecha_inicio_inscripcion + " " + fecha_fin_inscripcion);
 
 		Concurso miConcurso = new Concurso("Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion);
 //		System.out.println(miConcurso);

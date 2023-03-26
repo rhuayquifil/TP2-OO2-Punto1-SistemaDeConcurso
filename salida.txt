@@ -1,3 +1,1 @@
-2023-03-25 , Participante [dni=41321062, nombre=rodrigo] , 1
-2023-03-25 , Participante [dni=41321062, nombre=manu] , 1
-2023-03-25 , Participante [dni=41321062, nombre=franco] , 1
+

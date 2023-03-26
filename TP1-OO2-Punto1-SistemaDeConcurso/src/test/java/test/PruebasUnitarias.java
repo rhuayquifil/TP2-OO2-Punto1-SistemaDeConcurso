@@ -46,7 +46,7 @@ class PruebasUnitarias {
 
 //	@Test
 	void Un_participante_se_inscribe_en_un_concurso_el_primer_día_de_abierta_la_inscripción() {
-		Participante primerParticipante = new Participante(41321062, "manu");
+		Participante primerParticipante = new Participante(12345678, "manu");
 
 		LocalDate fecha_inicio_inscripcion = LocalDate.now();
 		LocalDate fecha_fin_inscripcion = fecha_inicio_inscripcion.plusDays(20);
@@ -72,7 +72,7 @@ class PruebasUnitarias {
 
 //	@Test
 	void Un_participante_intenta_inscribirse_fuera_del_rango_de_inscripción() {
-		Participante primerParticipante = new Participante(41321062, "franco");
+		Participante primerParticipante = new Participante(87654321, "franco");
 
 		LocalDate fecha = LocalDate.now();
 

@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Scanner;
 
-public class Copiador {
+public class Copiador implements GuardaDato {
 
 	private InputStream input;
 	private OutputStream output;
@@ -16,6 +16,7 @@ public class Copiador {
 		this.output = output;
 	}
 
+	@Override
 	public void copiar(String datosAGuardar) throws IOException {
 		try (Scanner scanner = new Scanner(input)) {
 

@@ -15,7 +15,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Participante primerParticipante = new Participante(41321062, "rodrigo");
-		Participante segundoParticipante = new Participante(12345678, "mana");
+//		Participante segundoParticipante = new Participante(12345678, "mana");
 
 //		System.out.println(primerParticipante);
 
@@ -33,7 +33,7 @@ public class Main {
 					new Copiador(System.in, new FileOutputStream(
 							new File("C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"), true)));
 			miConcurso.inscribirParticipante(primerParticipante);
-			miConcurso.inscribirParticipante(segundoParticipante);
+//			miConcurso.inscribirParticipante(segundoParticipante);
 //			System.out.println(miConcurso.verPuntajeAcumulado(segundoParticipante));
 
 //			Copiador miCopiador = new Copiador(System.in, new FileOutputStream(

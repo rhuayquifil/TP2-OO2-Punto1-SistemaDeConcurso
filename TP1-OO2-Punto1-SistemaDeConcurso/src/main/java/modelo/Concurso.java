@@ -14,9 +14,10 @@ public class Concurso {
 	private LocalDate inicio_inscripcion;
 	private LocalDate fin_inscripcion;
 	private Set<Cupo> lista_participante;
-	private Copiador copiador;
+	private GuardaDato copiador;
 
-	public Concurso(int id, String nombre, LocalDate inicio_inscripcion, LocalDate fin_inscripcion, Copiador copiador) {
+	public Concurso(int id, String nombre, LocalDate inicio_inscripcion, LocalDate fin_inscripcion,
+			GuardaDato copiador) {
 		super();
 		this.id = id;
 		this.nombre = nombre;

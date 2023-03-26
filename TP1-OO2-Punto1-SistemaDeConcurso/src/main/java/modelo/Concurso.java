@@ -10,25 +10,23 @@ import exceptions.ConcursoExceptions;
 public class Concurso {
 
 	private int id;
-	private String nombre;
 	private LocalDate inicio_inscripcion;
 	private LocalDate fin_inscripcion;
 	private Set<Cupo> lista_participante;
 	private GuardaDato copiador;
 
-	public Concurso(int id, String nombre, LocalDate inicio_inscripcion, LocalDate fin_inscripcion,
-			GuardaDato copiador) {
+	public Concurso(int id, LocalDate inicio_inscripcion, LocalDate fin_inscripcion, GuardaDato copiador) {
 		super();
 		this.id = id;
-		this.nombre = nombre;
 		this.inicio_inscripcion = inicio_inscripcion;
 		this.fin_inscripcion = fin_inscripcion;
 		this.lista_participante = new HashSet<Cupo>();
 		this.copiador = copiador;
 	}
 
+	@Override
 	public String toString() {
-		return "Concurso [nombre=" + nombre + ", inicio_inscripcion=" + inicio_inscripcion + ", fin_inscripcion="
+		return "Concurso [id=" + id + ", inicio_inscripcion=" + inicio_inscripcion + ", fin_inscripcion="
 				+ fin_inscripcion + ", lista_participante=" + lista_participante + "]";
 	}
 
@@ -47,7 +45,8 @@ public class Concurso {
 
 				// PARA HACER PREGUNTA
 
-				copiador.copiar(fecha_actual.toString() + " , " + nuevo_articipante + " , " + this.id + '\n');
+//				copiador.copiar(fecha_actual.toString() + " , " + nuevo_articipante + " , " + this.id + '\n');
+				copiador.copiar(nuevo_articipante, this);
 
 			} else {
 				throw new ConcursoExceptions(

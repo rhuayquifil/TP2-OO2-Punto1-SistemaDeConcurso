@@ -31,4 +31,8 @@ public class Participante {
 		Participante other = (Participante) obj;
 		return dni == other.dni;
 	}
+
+	public int id() {
+		return dni;
+	}
 }

@@ -28,4 +28,10 @@ public class Copiador implements GuardaDato {
 //			output.write(saltoDeLinea.getBytes());
 		}
 	}
+
+	@Override
+	public void copiar(Participante participante, Concurso concurso) {
+		// TODO Auto-generated method stub
+
+	}
 }

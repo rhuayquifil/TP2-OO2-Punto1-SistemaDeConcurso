@@ -6,17 +6,17 @@ import java.io.IOException;
 import java.util.Properties;
 
 import exceptions.PropertiesExceptions;
-import modelo.GuardaDato;
+import modelo.Almacenamiento;
 
-public class DataBase implements GuardaDato {
+public class DataBase implements Almacenamiento {
 
 	private Properties propiedades;
 
-	public DataBase(String urlDatabaseProperties) throws PropertiesExceptions {
+	public DataBase(String urlDataBaseProperties) throws PropertiesExceptions {
 		try {
 			propiedades = new Properties();
 
-			propiedades.load(new FileInputStream(urlDatabaseProperties));
+			propiedades.load(new FileInputStream(urlDataBaseProperties));
 
 		} catch (FileNotFoundException e) {
 			throw new PropertiesExceptions("Error, El archivo no exite");
@@ -27,36 +27,6 @@ public class DataBase implements GuardaDato {
 
 	public String get(String key) {
 		return propiedades.getProperty(key);
-	}
-
-	@Override
-	public void copiar(String datosAGuardar) throws IOException {
-//		try (Connection conn = DriverManager.getConnection(properties.get("url"), properties.get("usuario"),
-//				properties.get("contrasena"));
-//				java.sql.PreparedStatement state = conn.prepareStatement(sqlInsertCatalogo)) {
-//
-//			state.setInt(1, 0);
-//			state.setString(2, catalogo.getNombre());
-//			state.setInt(3, catalogo.getCantidadDeProductos());
-//
-//			if (catalogo.isEstado()) {
-//				state.setInt(4, 1);
-//			} else {
-//				state.setInt(4, 0);
-//			}
-//
-//			int cantidad = state.executeUpdate();
-//
-//			if (cantidad > 0) {
-////				throw new DAOExceptions("Catalogo ingresado con exito");
-//			} else {
-//				throw new DAOExceptions("error al ingresar Catalogo");
-//			}
-//
-//		} catch (SQLException e) {
-//			throw new BaseDeDatosExceptions("error al prosesar consulta");
-//		}
-
 	}
 
 }

@@ -14,7 +14,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Participante primerParticipante = new Participante(41321062, "rodrigo");
-//		Participante segundoParticipante = new Participante(12345678, "mana");
+		Participante segundoParticipante = new Participante(12345678, "mana");
 
 //		System.out.println(primerParticipante);
 
@@ -36,11 +36,12 @@ public class Main {
 			DataBase properties = new DataBase(
 					"C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\TP1-OO2-Punto1-SistemaDeConcurso\\src\\main\\java\\properties\\database.properties");
 
-			Concurso miConcurso = new Concurso(1, fecha_inicio_inscripcion, fecha_fin_inscripcion,
-					new almacenarRegistrosEnBase(properties));
-//
+			Concurso miConcurso = new Concurso(1, "R.E.H Servicio Tecnico", fecha_inicio_inscripcion,
+					fecha_fin_inscripcion, new almacenarRegistrosEnBase(properties,
+							"INSERT INTO registro (fecha, id_participante, id_concurso)" + "VALUES (?, ?, ?);"));
+
 			miConcurso.inscribirParticipante(primerParticipante);
-//			miConcurso.inscribirParticipante(segundoParticipante);
+			miConcurso.inscribirParticipante(segundoParticipante);
 //			System.out.println(miConcurso.verPuntajeAcumulado(segundoParticipante));
 
 //			System.out.println(miConcurso);

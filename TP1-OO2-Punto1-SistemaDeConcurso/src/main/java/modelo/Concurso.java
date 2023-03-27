@@ -5,19 +5,24 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import exceptions.BaseDeDatosExceptions;
 import exceptions.ConcursoExceptions;
+import exceptions.GuardaDatoExceptions;
 
 public class Concurso {
 
 	private int id;
+	private String nombre;
 	private LocalDate inicio_inscripcion;
 	private LocalDate fin_inscripcion;
 	private Set<Cupo> lista_participante;
 	private GuardaDato copiador;
 
-	public Concurso(int id, LocalDate inicio_inscripcion, LocalDate fin_inscripcion, GuardaDato copiador) {
+	public Concurso(int id, String nombre, LocalDate inicio_inscripcion, LocalDate fin_inscripcion,
+			GuardaDato copiador) {
 		super();
 		this.id = id;
+		this.nombre = nombre;
 		this.inicio_inscripcion = inicio_inscripcion;
 		this.fin_inscripcion = fin_inscripcion;
 		this.lista_participante = new HashSet<Cupo>();
@@ -45,8 +50,13 @@ public class Concurso {
 
 				// PARA HACER PREGUNTA
 
-//				copiador.copiar(fecha_actual.toString() + " , " + nuevo_articipante + " , " + this.id + '\n');
-				copiador.copiar(nuevo_articipante, this);
+				try {
+
+					copiador.copiar(nuevo_articipante, this);
+
+				} catch (GuardaDatoExceptions | BaseDeDatosExceptions e) {
+					throw new ConcursoExceptions("Error al guardar el registro");
+				}
 
 			} else {
 				throw new ConcursoExceptions(
@@ -55,7 +65,6 @@ public class Concurso {
 		} else {
 			throw new ConcursoExceptions("Participante ya inscripto");
 		}
-
 	}
 
 	public boolean estaInscripto(Participante nuevo_articipante) {
@@ -90,5 +99,9 @@ public class Concurso {
 			}
 		}
 		return -1; // si retorna -1 significa que el participante no esta inscripto
+	}
+
+	public int id() {
+		return this.id;
 	}
 }

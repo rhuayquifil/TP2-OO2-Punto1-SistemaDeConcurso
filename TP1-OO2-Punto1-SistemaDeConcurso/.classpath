@@ -36,7 +36,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="mysql-connector-java-5.1.48.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ezehu/Downloads/mysql-connector-java-5.1.48.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ezehu/git/TP1-OO2-Punto1-SistemaDeConcurso/mysql-connector-java-5.1.48.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

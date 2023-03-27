@@ -3,6 +3,7 @@ package modelo;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Copiador implements GuardaDato {
@@ -17,21 +18,12 @@ public class Copiador implements GuardaDato {
 	}
 
 	@Override
-	public void copiar(String datosAGuardar) throws IOException {
+	public void copiar(Participante participante, Concurso concurso) throws IOException {
 		try (Scanner scanner = new Scanner(input)) {
 
-//			output.write(scanner.nextLine().getBytes());
+			String registro = LocalDate.now() + " , " + participante.id() + " , " + concurso.id() + '\n';
 
-//			String saltoDeLinea = "\r\n";
-
-			output.write(datosAGuardar.getBytes());
-//			output.write(saltoDeLinea.getBytes());
+			output.write(registro.getBytes());
 		}
-	}
-
-	@Override
-	public void copiar(Participante participante, Concurso concurso) {
-		// TODO Auto-generated method stub
-
 	}
 }

@@ -46,13 +46,14 @@ public class Concurso {
 				if (inscripcionElPrimerDia(fecha_actual)) {
 					nuevoCupo.sumarPuntos(10);
 				}
+
 				lista_participante.add(nuevoCupo);
 
-				// PARA HACER PREGUNTA
+				// ACA SE ENVIARIAN LOS MAILSTRAP
 
 				try {
 
-					copiador.copiar(nuevo_articipante, this);
+					copiador.copiar(LocalDate.now().toString() + " , " + nuevo_articipante.id() + " , " + this.id);
 
 				} catch (GuardaDatoExceptions | BaseDeDatosExceptions e) {
 					throw new ConcursoExceptions("Error al guardar el registro");

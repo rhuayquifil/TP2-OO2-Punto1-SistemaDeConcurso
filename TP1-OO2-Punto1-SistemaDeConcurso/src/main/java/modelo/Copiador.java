@@ -3,8 +3,9 @@ package modelo;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.time.LocalDate;
-import java.util.Scanner;
+
+import exceptions.BaseDeDatosExceptions;
+import exceptions.GuardaDatoExceptions;
 
 public class Copiador implements GuardaDato {
 
@@ -18,12 +19,7 @@ public class Copiador implements GuardaDato {
 	}
 
 	@Override
-	public void copiar(Participante participante, Concurso concurso) throws IOException {
-		try (Scanner scanner = new Scanner(input)) {
-
-			String registro = LocalDate.now() + " , " + participante.id() + " , " + concurso.id() + '\n';
-
-			output.write(registro.getBytes());
-		}
+	public void copiar(String registro) throws GuardaDatoExceptions, BaseDeDatosExceptions, IOException {
+		output.write(registro.getBytes());
 	}
 }

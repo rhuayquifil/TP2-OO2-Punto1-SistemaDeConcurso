@@ -1,9 +1,9 @@
 package modelo;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 import exceptions.BaseDeDatosExceptions;
 import exceptions.GuardaDatoExceptions;
@@ -20,8 +20,7 @@ public class almacenarRegistrosEnBase implements GuardaDato {
 	}
 
 	@Override
-	public void copiar(Participante participante, Concurso concurso)
-			throws GuardaDatoExceptions, BaseDeDatosExceptions {
+	public void copiar(String registro) throws GuardaDatoExceptions, BaseDeDatosExceptions, IOException {
 
 		try (Connection conn = DriverManager.getConnection(properties.get("url"), properties.get("usuario"),
 				properties.get("contrasena"));
@@ -29,25 +28,24 @@ public class almacenarRegistrosEnBase implements GuardaDato {
 
 //			"INSERT INTO registro (fecha, id_participante, id_concurso)" + "VALUES (?, ?, ?);"
 
-			java.sql.Date fechaRegistro = java.sql.Date.valueOf(LocalDate.now());
+			String[] parts = registro.split(" , ");
+
+			java.sql.Date fechaRegistro = java.sql.Date.valueOf(parts[0]);
 			state.setDate(1, fechaRegistro);
 
-			state.setInt(2, participante.id());
+			state.setInt(2, Integer.valueOf(parts[1]));
 
-			state.setInt(3, concurso.id());
+			state.setInt(3, Integer.valueOf(parts[2]));
 
 			int cantidad = state.executeUpdate();
 
-			if (cantidad > 0) {
-//				throw new DAOExceptions("Registro ingresado con exito");
-			} else {
+			if (cantidad <= 0) {
 				throw new GuardaDatoExceptions("error al ingresar Registro");
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | NumberFormatException e) {
 			throw new BaseDeDatosExceptions("error al prosesar consulta");
 		}
-
 	}
 
 }

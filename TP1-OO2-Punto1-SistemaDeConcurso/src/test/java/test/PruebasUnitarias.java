@@ -1,34 +1,48 @@
 package test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.LocalDate;
+
+import exceptions.ConcursoExceptions;
+import modelo.Concurso;
+import modelo.Copiador;
+import modelo.Participante;
+
 class PruebasUnitarias {
 
-//	@Test
-//	void Un_participante_se_inscribe_en_un_concurso() {
-//		Participante primerParticipante = new Participante(41321062, "rodrigo");
-//
-//		LocalDate fecha = LocalDate.now();
-//
-//		LocalDate fecha_inicio_inscripcion = fecha.plusDays(-10);
-//		LocalDate fecha_fin_inscripcion = fecha.plusDays(20);
-//
-//		try {
-//
-//			Concurso miConcurso = new Concurso(1, "Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion,
-//					new Copiador(System.in, new FileOutputStream(
-//							new File("C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"), true)));
-//
-//			miConcurso.inscribirParticipante(primerParticipante);
-//
-//			assertEquals(true, miConcurso.estaInscripto(primerParticipante));
-//
-//		} catch (ConcursoExceptions e) {
-//			fail("Participante no se inscribio al concurso");
-//		} catch (FileNotFoundException e) {
-//			fail("exceptions FileNotFoundException");
-//		} catch (IOException e) {
-//			fail("exceptions IOException");
-//		}
-//	}
+	@Test
+	void Un_participante_se_inscribe_en_un_concurso() {
+		Participante primerParticipante = new Participante(41321062, "rodrigo");
+
+		LocalDate fecha = LocalDate.now();
+
+		LocalDate fecha_inicio_inscripcion = fecha.plusDays(-10);
+		LocalDate fecha_fin_inscripcion = fecha.plusDays(20);
+
+		try {
+
+			Concurso miConcurso = new Concurso(1, "Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion,
+					new Copiador(System.in, new FileOutputStream(
+							new File("C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"), true)));
+
+			miConcurso.inscribirParticipante(primerParticipante);
+
+			assertEquals(true, miConcurso.estaInscripto(primerParticipante));
+
+		} catch (ConcursoExceptions e) {
+			fail("Participante no se inscribio al concurso");
+		} catch (FileNotFoundException e) {
+			fail("exceptions FileNotFoundException");
+		} catch (IOException e) {
+			fail("exceptions IOException");
+		}
+	}
 
 //	@Test
 //	void Un_participante_se_inscribe_en_un_concurso_el_primer_día_de_abierta_la_inscripción() {

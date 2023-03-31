@@ -9,6 +9,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.Test;
+
 import exceptions.ConcursoExceptions;
 import modelo.Concurso;
 import modelo.Copiador;
@@ -18,7 +20,7 @@ class PruebasUnitarias {
 
 	@Test
 	void Un_participante_se_inscribe_en_un_concurso() {
-		Participante primerParticipante = new Participante(41321062, "rodrigo");
+		Participante primerParticipante = new Participante(41321062, "rodrigo", "ezehuayquifil@hotmail.com");
 
 		LocalDate fecha = LocalDate.now();
 
@@ -29,7 +31,7 @@ class PruebasUnitarias {
 
 			Concurso miConcurso = new Concurso(1, "Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion,
 					new Copiador(System.in, new FileOutputStream(
-							new File("C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"), true)));
+							new File("C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"), true), new Ema));
 
 			miConcurso.inscribirParticipante(primerParticipante);
 

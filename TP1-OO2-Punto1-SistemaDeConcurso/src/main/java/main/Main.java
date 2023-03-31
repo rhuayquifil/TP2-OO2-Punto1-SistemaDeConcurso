@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import exceptions.ConcursoExceptions;
 import modelo.Concurso;
 import modelo.Copiador;
+import modelo.EmailRegistroInscripcion;
 import modelo.Participante;
 
 public class Main {
@@ -27,9 +28,16 @@ public class Main {
 		try {
 			// COPIA REGISTROS EN .TXT
 
+//			Concurso miConcurso = new Concurso(1, "Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion,
+//					new Copiador(System.in, new FileOutputStream(
+//							new File("C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"), true)));
+
+			// COPIA REGISTROS EN .TXT CON NOTIFICACION VIA EMAIL
+
 			Concurso miConcurso = new Concurso(1, "Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion,
 					new Copiador(System.in, new FileOutputStream(
-							new File("C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"), true)));
+							new File("C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"), true)),
+					new EmailRegistroInscripcion("524def57d07409", "a0f84bcbd4913c", "sandbox.smtp.mailtrap.io"));
 
 			// COPIA REGISTROS EN .DATABASE
 

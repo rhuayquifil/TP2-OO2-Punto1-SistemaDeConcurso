@@ -17,6 +17,19 @@ public class Concurso {
 	private LocalDate fin_inscripcion;
 	private Set<Cupo> lista_participante;
 	private GuardaDato copiador;
+	private Notificacion notificacion;
+
+	public Concurso(int id, String nombre, LocalDate inicio_inscripcion, LocalDate fin_inscripcion, GuardaDato copiador,
+			Notificacion notificacion) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.inicio_inscripcion = inicio_inscripcion;
+		this.fin_inscripcion = fin_inscripcion;
+		this.lista_participante = new HashSet<Cupo>();
+		this.copiador = copiador;
+		this.notificacion = notificacion;
+	}
 
 	public Concurso(int id, String nombre, LocalDate inicio_inscripcion, LocalDate fin_inscripcion,
 			GuardaDato copiador) {
@@ -27,6 +40,7 @@ public class Concurso {
 		this.fin_inscripcion = fin_inscripcion;
 		this.lista_participante = new HashSet<Cupo>();
 		this.copiador = copiador;
+		this.notificacion = null;
 	}
 
 	@Override
@@ -55,9 +69,14 @@ public class Concurso {
 
 					copiador.copiar(LocalDate.now().toString() + " , " + nuevo_articipante.id() + " , " + this.id);
 
+					// TENES QUE RESOLVER COMO HACER CUANDO NO SE TIENE QUE ENVIAR LA NOTIFICACION
+
 					// PREGUNTA !!!!
-					Notificacion notificacion = new EmailRegistroInscripcion(nuevo_articipante.email());
-					notificacion.enviarCorreo();
+
+//					Notificacion notificacion = new EmailRegistroInscripcion(nuevo_articipante.email());
+//					notificacion.enviarCorreo();
+					notificacion.enviarCorreo("SistemaDeConcurso@RodrigoHuayquifil.com", nuevo_articipante.email(),
+							"Felicidades", "Su inscripcion se realizo con exito");
 
 				} catch (GuardaDatoExceptions | BaseDeDatosExceptions e) {
 					throw new ConcursoExceptions("Error al guardar el registro");

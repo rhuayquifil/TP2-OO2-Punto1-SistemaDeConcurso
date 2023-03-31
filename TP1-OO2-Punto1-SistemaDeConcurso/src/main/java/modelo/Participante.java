@@ -6,11 +6,13 @@ public class Participante {
 
 	private int dni;
 	private String nombre;
+	private String email;
 
-	public Participante(int dni, String nombre) {
+	public Participante(int dni, String nombre, String email) {
 		super();
 		this.dni = dni;
 		this.nombre = nombre;
+		this.email = email;
 	}
 
 	public String toString() {
@@ -34,5 +36,9 @@ public class Participante {
 
 	public int id() {
 		return dni;
+	}
+
+	public String email() {
+		return email;
 	}
 }

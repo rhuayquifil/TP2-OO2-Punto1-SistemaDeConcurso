@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import exceptions.BaseDeDatosExceptions;
 import exceptions.GuardaDatoExceptions;
 
-public class almacenarRegistrosEnBase implements GuardaDato {
+public class AlmacenarRegistrosEnBase implements GuardaDato {
 
 	private Almacenamiento properties;
 	private String sqlInsertRegistro;
 
-	public almacenarRegistrosEnBase(Almacenamiento properties, String sqlInsertRegistro) {
+	public AlmacenarRegistrosEnBase(Almacenamiento properties, String sqlInsertRegistro) {
 		super();
 		this.properties = properties;
 		this.sqlInsertRegistro = sqlInsertRegistro;

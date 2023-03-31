@@ -55,6 +55,10 @@ public class Concurso {
 
 					copiador.copiar(LocalDate.now().toString() + " , " + nuevo_articipante.id() + " , " + this.id);
 
+					// PREGUNTA !!!!
+					Notificacion notificacion = new EmailRegistroInscripcion(nuevo_articipante.email());
+					notificacion.enviarCorreo();
+
 				} catch (GuardaDatoExceptions | BaseDeDatosExceptions e) {
 					throw new ConcursoExceptions("Error al guardar el registro");
 				}

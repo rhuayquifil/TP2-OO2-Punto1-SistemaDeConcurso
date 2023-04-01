@@ -1,15 +1,15 @@
 package main;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 
 import exceptions.ConcursoExceptions;
+import exceptions.PropertiesExceptions;
+import modelo.AlmacenarRegistrosEnBase;
 import modelo.Concurso;
-import modelo.Copiador;
 import modelo.EmailRegistroInscripcion;
 import modelo.Participante;
+import properties.DataBase;
 
 public class Main {
 
@@ -29,32 +29,34 @@ public class Main {
 			// COPIA REGISTROS EN .TXT
 
 //			Concurso miConcurso = new Concurso(1, "Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion,
-//					new Copiador(System.in, new FileOutputStream(
-//							new File("C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"), true)));
+//					new AlmacenarRegistrosEnDisco(
+//							"C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"),
+//					new EmailRegistroInscripcion("524def57d07409", "a0f84bcbd4913c", "sandbox.smtp.mailtrap.io"));
 
-			// COPIA REGISTROS EN .TXT CON NOTIFICACION VIA EMAIL
-
-			Concurso miConcurso = new Concurso(1, "Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion,
-					new Copiador(System.in, new FileOutputStream(
-							new File("C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"), true)),
-					new EmailRegistroInscripcion("524def57d07409", "a0f84bcbd4913c", "sandbox.smtp.mailtrap.io"));
+			DataBase properties = new DataBase(
+					"C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\TP1-OO2-Punto1-SistemaDeConcurso\\src\\main\\java\\properties\\database.properties");
 
 			// COPIA REGISTROS EN .DATABASE
 
-//			DataBase properties = new DataBase(
-//					"C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\TP1-OO2-Punto1-SistemaDeConcurso\\src\\main\\java\\properties\\database.properties");
-//
 //			Concurso miConcurso = new Concurso(1, "R.E.H Servicio Tecnico", fecha_inicio_inscripcion,
 //					fecha_fin_inscripcion, new AlmacenarRegistrosEnBase(properties,
 //							"INSERT INTO registro (fecha, id_participante, id_concurso)" + "VALUES (?, ?, ?);"));
+
+			// COPIA REGISTROS EN .DATABASE CON NOTIFICACION VIA EMAIL
+
+			Concurso miConcurso = new Concurso(1, "R.E.H Servicio Tecnico", fecha_inicio_inscripcion,
+					fecha_fin_inscripcion,
+					new AlmacenarRegistrosEnBase(properties,
+							"INSERT INTO registro (fecha, id_participante, id_concurso)" + "VALUES (?, ?, ?);"),
+					new EmailRegistroInscripcion("524def57d07409", "a0f84bcbd4913c", "sandbox.smtp.mailtrap.io"));
 
 			miConcurso.inscribirParticipante(primerParticipante);
 //			miConcurso.inscribirParticipante(segundoParticipante);
 //			System.out.println(miConcurso.verPuntajeAcumulado(segundoParticipante));
 
 //			System.out.println(miConcurso);
-//		} catch (PropertiesExceptions e) {
-//			System.out.println(e.getMessage());
+		} catch (PropertiesExceptions e) {
+			System.out.println(e.getMessage());
 		} catch (ConcursoExceptions e) {
 			System.out.println(e.getMessage());
 		} catch (IOException e) {

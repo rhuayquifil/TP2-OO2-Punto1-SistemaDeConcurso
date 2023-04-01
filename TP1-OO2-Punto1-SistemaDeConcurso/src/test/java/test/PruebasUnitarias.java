@@ -3,17 +3,16 @@ package test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import FakeObject.EmailFakeNotificacion;
 import exceptions.ConcursoExceptions;
+import modelo.AlmacenarRegistrosEnDisco;
 import modelo.Concurso;
-import modelo.Copiador;
 import modelo.Participante;
 
 class PruebasUnitarias {
@@ -29,10 +28,15 @@ class PruebasUnitarias {
 
 		try {
 
-			Concurso miConcurso = new Concurso(1, "Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion,
-					new Copiador(System.in, new FileOutputStream(
-							new File("C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"), true), new Ema));
+//			el test debe correr sin escribir en disco
+//			o en la base de datos o enviar el email de forma verdadera
 
+			Concurso miConcurso = new Concurso(1, "Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion,
+					new AlmacenarRegistrosEnDisco(
+							"C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"),
+					new EmailFakeNotificacion("524def57d07409", "a0f84bcbd4913c", "sandbox.smtp.mailtrap.io"));
+
+			//
 			miConcurso.inscribirParticipante(primerParticipante);
 
 			assertEquals(true, miConcurso.estaInscripto(primerParticipante));

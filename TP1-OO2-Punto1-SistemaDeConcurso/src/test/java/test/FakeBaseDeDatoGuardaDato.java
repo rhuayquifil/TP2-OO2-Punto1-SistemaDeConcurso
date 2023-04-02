@@ -32,12 +32,6 @@ public class FakeBaseDeDatoGuardaDato implements GuardaDato {
 
 			resultado = registro;
 
-			int cantidad = state.executeUpdate();
-
-			if (cantidad <= 0) {
-				throw new GuardaDatoExceptions("error al ingresar Registro");
-			}
-
 		} catch (SQLException | NumberFormatException e) {
 			throw new BaseDeDatosExceptions("error al prosesar consulta");
 		}

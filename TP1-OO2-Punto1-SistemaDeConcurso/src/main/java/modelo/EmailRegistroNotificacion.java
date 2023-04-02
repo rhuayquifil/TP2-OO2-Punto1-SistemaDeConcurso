@@ -57,7 +57,7 @@ public class EmailRegistroNotificacion implements Notificacion {
 
 			// ACA LA EMAILEXCEPTIONS
 
-			System.out.println("Email Message Sent Successfully");
+//			System.out.println("Email Message Sent Successfully");
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}

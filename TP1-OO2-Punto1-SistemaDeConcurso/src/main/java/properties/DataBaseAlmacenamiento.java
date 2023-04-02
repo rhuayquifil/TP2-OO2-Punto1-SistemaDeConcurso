@@ -8,11 +8,11 @@ import java.util.Properties;
 import exceptions.PropertiesExceptions;
 import modelo.Almacenamiento;
 
-public class DataBase implements Almacenamiento {
+public class DataBaseAlmacenamiento implements Almacenamiento {
 
 	private Properties propiedades;
 
-	public DataBase(String urlDataBaseProperties) throws PropertiesExceptions {
+	public DataBaseAlmacenamiento(String urlDataBaseProperties) throws PropertiesExceptions {
 		try {
 			propiedades = new Properties();
 

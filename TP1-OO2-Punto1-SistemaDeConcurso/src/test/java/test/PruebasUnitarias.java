@@ -9,9 +9,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import FakeObject.EmailFakeNotificacion;
 import exceptions.ConcursoExceptions;
-import modelo.AlmacenarRegistrosEnDisco;
 import modelo.Concurso;
 import modelo.Participante;
 
@@ -31,15 +29,18 @@ class PruebasUnitarias {
 //			el test debe correr sin escribir en disco
 //			o en la base de datos o enviar el email de forma verdadera
 
-			Concurso miConcurso = new Concurso(1, "Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion,
-					new AlmacenarRegistrosEnDisco(
-							"C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"),
-					new EmailFakeNotificacion("524def57d07409", "a0f84bcbd4913c", "sandbox.smtp.mailtrap.io"));
+			FakeEmailRegistroNotificacion notificacion = new FakeEmailRegistroNotificacion("524def57d07409",
+					"a0f84bcbd4913c", "sandbox.smtp.mailtrap.io");
 
-			//
+			Concurso miConcurso = new Concurso(1, "Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion,
+					new FakeDiscoGuardaDato(
+							"C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"),
+					notificacion);
+
 			miConcurso.inscribirParticipante(primerParticipante);
 
 			assertEquals(true, miConcurso.estaInscripto(primerParticipante));
+//			assertEquals(primerParticipante.email(), notificacion.resultado());
 
 		} catch (ConcursoExceptions e) {
 			fail("Participante no se inscribio al concurso");

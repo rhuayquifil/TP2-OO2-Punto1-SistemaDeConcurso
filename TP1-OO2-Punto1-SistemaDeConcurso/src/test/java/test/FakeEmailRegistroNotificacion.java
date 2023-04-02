@@ -1,16 +1,17 @@
-package FakeObject;
+package test;
 
 import modelo.Notificacion;
 
-public class EmailFakeNotificacion implements Notificacion {
+public class FakeEmailRegistroNotificacion implements Notificacion {
 
 	private String resultado;
 	private String username;
 	private String password;
 	private String hostAddress;
 
-	public EmailFakeNotificacion(String username, String password, String hostAddress) {
+	public FakeEmailRegistroNotificacion(String username, String password, String hostAddress) {
 		super();
+		this.resultado = "";
 		this.username = username;
 		this.password = password;
 		this.hostAddress = hostAddress;
@@ -20,11 +21,11 @@ public class EmailFakeNotificacion implements Notificacion {
 	public void enviarCorreo(String correoRemitente, String correoDestinatario, String contenidoSujeto,
 			String contenidoMensaje) {
 
-		resultado = correoRemitente + " - " + correoDestinatario + " - " + contenidoSujeto + " - " + contenidoMensaje;
+		resultado = correoDestinatario;
 
 	}
 
-	public String resultado() {
+	String resultado() {
 		return resultado;
 	}
 

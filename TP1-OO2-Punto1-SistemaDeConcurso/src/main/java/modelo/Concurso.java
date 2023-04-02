@@ -56,7 +56,8 @@ public class Concurso {
 					copiador.copiar(LocalDate.now().toString() + " , " + nuevo_articipante.id() + " , " + this.id);
 
 					notificacion.enviarCorreo("SistemaDeConcurso@RodrigoHuayquifil.com", nuevo_articipante.email(),
-							"Felicidades", "Su inscripcion se realizo con exito");
+							"Inscripcion a concurso: " + this.nombre,
+							"Felicidades. Su inscripcion se realizo con exito");
 
 				} catch (GuardaDatoExceptions | BaseDeDatosExceptions e) {
 					throw new ConcursoExceptions("Error al guardar el registro");

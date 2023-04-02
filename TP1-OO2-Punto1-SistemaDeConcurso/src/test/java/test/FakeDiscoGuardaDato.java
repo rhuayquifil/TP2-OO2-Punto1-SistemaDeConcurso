@@ -1,4 +1,4 @@
-package modelo;
+package test;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,13 +7,16 @@ import java.io.OutputStream;
 
 import exceptions.BaseDeDatosExceptions;
 import exceptions.GuardaDatoExceptions;
+import modelo.GuardaDato;
 
-public class AlmacenarRegistrosEnDisco implements GuardaDato {
+public class FakeDiscoGuardaDato implements GuardaDato {
 
+	private String resultado;
 	private String rutaArchivo;
 
-	public AlmacenarRegistrosEnDisco(String rutaArchivo) {
+	public FakeDiscoGuardaDato(String rutaArchivo) {
 		super();
+		this.resultado = "";
 		this.rutaArchivo = rutaArchivo;
 	}
 
@@ -21,7 +24,10 @@ public class AlmacenarRegistrosEnDisco implements GuardaDato {
 	public void copiar(String registro) throws GuardaDatoExceptions, BaseDeDatosExceptions, IOException {
 		OutputStream output = new FileOutputStream(new File(rutaArchivo), true);
 
-		String guardar = registro + '\n';
-		output.write(guardar.getBytes());
+		resultado = registro;
+	}
+
+	String resultado() {
+		return resultado;
 	}
 }

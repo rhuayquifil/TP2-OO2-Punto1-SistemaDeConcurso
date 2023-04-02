@@ -1,4 +1,4 @@
-package modelo;
+package test;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -7,14 +7,18 @@ import java.sql.SQLException;
 
 import exceptions.BaseDeDatosExceptions;
 import exceptions.GuardaDatoExceptions;
+import modelo.Almacenamiento;
+import modelo.GuardaDato;
 
-public class AlmacenarRegistrosEnBase implements GuardaDato {
+public class FakeBaseDeDatoGuardaDato implements GuardaDato {
 
+	private String resultado;
 	private Almacenamiento properties;
 	private String sqlInsertRegistro;
 
-	public AlmacenarRegistrosEnBase(Almacenamiento properties, String sqlInsertRegistro) {
+	public FakeBaseDeDatoGuardaDato(Almacenamiento properties, String sqlInsertRegistro) {
 		super();
+		this.resultado = "";
 		this.properties = properties;
 		this.sqlInsertRegistro = sqlInsertRegistro;
 	}
@@ -26,16 +30,7 @@ public class AlmacenarRegistrosEnBase implements GuardaDato {
 				properties.get("contrasena"));
 				java.sql.PreparedStatement state = conn.prepareStatement(sqlInsertRegistro)) {
 
-//			"INSERT INTO registro (fecha, id_participante, id_concurso)" + "VALUES (?, ?, ?);"
-
-			String[] parts = registro.split(" , ");
-
-			java.sql.Date fechaRegistro = java.sql.Date.valueOf(parts[0]);
-			state.setDate(1, fechaRegistro);
-
-			state.setInt(2, Integer.valueOf(parts[1]));
-
-			state.setInt(3, Integer.valueOf(parts[2]));
+			resultado = registro;
 
 			int cantidad = state.executeUpdate();
 
@@ -48,4 +43,7 @@ public class AlmacenarRegistrosEnBase implements GuardaDato {
 		}
 	}
 
+	String resultado() {
+		return resultado;
+	}
 }

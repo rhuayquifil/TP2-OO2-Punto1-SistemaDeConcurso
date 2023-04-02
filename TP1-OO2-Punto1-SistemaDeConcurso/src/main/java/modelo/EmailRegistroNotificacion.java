@@ -10,13 +10,13 @@ import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 
-public class EmailRegistroInscripcion implements Notificacion {
+public class EmailRegistroNotificacion implements Notificacion {
 
 	private final String username;
 	private final String password;
 	private String hostAddress;
 
-	public EmailRegistroInscripcion(String username, String password, String hostAddress) {
+	public EmailRegistroNotificacion(String username, String password, String hostAddress) {
 		super();
 		this.username = username;
 		this.password = password;

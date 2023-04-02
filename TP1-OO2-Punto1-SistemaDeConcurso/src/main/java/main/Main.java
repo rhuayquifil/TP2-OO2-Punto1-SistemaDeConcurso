@@ -5,11 +5,11 @@ import java.time.LocalDate;
 
 import exceptions.ConcursoExceptions;
 import exceptions.PropertiesExceptions;
-import modelo.AlmacenarRegistrosEnBase;
+import modelo.BaseDeDatoGuardaDato;
 import modelo.Concurso;
-import modelo.EmailRegistroInscripcion;
+import modelo.EmailRegistroNotificacion;
 import modelo.Participante;
-import properties.DataBase;
+import properties.DataBaseAlmacenamiento;
 
 public class Main {
 
@@ -33,7 +33,7 @@ public class Main {
 //							"C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"),
 //					new EmailRegistroInscripcion("524def57d07409", "a0f84bcbd4913c", "sandbox.smtp.mailtrap.io"));
 
-			DataBase properties = new DataBase(
+			DataBaseAlmacenamiento properties = new DataBaseAlmacenamiento(
 					"C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\TP1-OO2-Punto1-SistemaDeConcurso\\src\\main\\java\\properties\\database.properties");
 
 			// COPIA REGISTROS EN .DATABASE
@@ -46,9 +46,9 @@ public class Main {
 
 			Concurso miConcurso = new Concurso(1, "R.E.H Servicio Tecnico", fecha_inicio_inscripcion,
 					fecha_fin_inscripcion,
-					new AlmacenarRegistrosEnBase(properties,
+					new BaseDeDatoGuardaDato(properties,
 							"INSERT INTO registro (fecha, id_participante, id_concurso)" + "VALUES (?, ?, ?);"),
-					new EmailRegistroInscripcion("524def57d07409", "a0f84bcbd4913c", "sandbox.smtp.mailtrap.io"));
+					new EmailRegistroNotificacion("524def57d07409", "a0f84bcbd4913c", "sandbox.smtp.mailtrap.io"));
 
 			miConcurso.inscribirParticipante(primerParticipante);
 //			miConcurso.inscribirParticipante(segundoParticipante);

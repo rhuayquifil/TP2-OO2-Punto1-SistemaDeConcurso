@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.Test;
+
 import exceptions.ConcursoExceptions;
 import exceptions.PropertiesExceptions;
 import modelo.Concurso;
@@ -15,7 +17,7 @@ import properties.DataBaseAlmacenamiento;
 
 class PruebasUnitarias {
 
-//	@Test
+	@Test
 	void Un_participante_se_inscribe_en_un_concurso() {
 		Participante primerParticipante = new Participante(41321062, "rodrigo", "ezehuayquifil@hotmail.com");
 
@@ -50,7 +52,7 @@ class PruebasUnitarias {
 		}
 	}
 
-//	@Test
+	@Test
 	void Un_participante_se_inscribe_en_un_concurso_el_primer_día_de_abierta_la_inscripción() {
 		Participante primerParticipante = new Participante(41321062, "rodrigo", "ezehuayquifil@hotmail.com");
 
@@ -83,7 +85,7 @@ class PruebasUnitarias {
 		}
 	}
 
-//	@Test
+	@Test
 	void Un_participante_intenta_inscribirse_fuera_del_rango_de_inscripción() {
 		Participante primerParticipante = new Participante(41321062, "rodrigo", "ezehuayquifil@hotmail.com");
 

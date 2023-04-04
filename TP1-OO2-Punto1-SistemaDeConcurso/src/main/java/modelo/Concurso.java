@@ -2,6 +2,7 @@ package modelo;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,11 +32,11 @@ public class Concurso {
 		this.notificacion = notificacion;
 	}
 
-	@Override
-	public String toString() {
-		return "Concurso [id=" + id + ", inicio_inscripcion=" + inicio_inscripcion + ", fin_inscripcion="
-				+ fin_inscripcion + ", lista_participante=" + lista_participante + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Concurso [id=" + id + ", inicio_inscripcion=" + inicio_inscripcion + ", fin_inscripcion="
+//				+ fin_inscripcion + ", lista_participante=" + lista_participante + "]";
+//	}
 
 	public void inscribirParticipante(Participante nuevo_articipante) throws ConcursoExceptions, IOException {
 		LocalDate fecha_actual = LocalDate.now();
@@ -53,7 +54,7 @@ public class Concurso {
 
 				try {
 
-					copiador.copiar(LocalDate.now().toString() + " , " + nuevo_articipante.id() + " , " + this.id);
+					copiador.copiar(LocalDateTime.now().toString() + " , " + nuevo_articipante.id() + " , " + this.id);
 
 					notificacion.enviarCorreo("SistemaDeConcurso@RodrigoHuayquifil.com", nuevo_articipante.email(),
 							"Inscripcion a concurso: " + this.nombre,

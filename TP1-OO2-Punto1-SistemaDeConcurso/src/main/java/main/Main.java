@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import exceptions.ConcursoExceptions;
+import exceptions.PropertiesExceptions;
+import modelo.BaseDeDatoGuardaDato;
 import modelo.Concurso;
-import modelo.DiscoGuardaDato;
 import modelo.EmailRegistroNotificacion;
 import modelo.Participante;
+import properties.DataBaseAlmacenamiento;
 
 public class Main {
 
@@ -26,28 +28,28 @@ public class Main {
 		try {
 			// COPIA REGISTROS EN .TXT
 
-			Concurso miConcurso = new Concurso(1, "Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion,
-					new DiscoGuardaDato("C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"),
-					new EmailRegistroNotificacion("524def57d07409", "a0f84bcbd4913c", "sandbox.smtp.mailtrap.io"));
+//			Concurso miConcurso = new Concurso(1, "Mi Primer Concurso", fecha_inicio_inscripcion, fecha_fin_inscripcion,
+//					new DiscoGuardaDato("C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\salida.txt"),
+//					new EmailRegistroNotificacion("524def57d07409", "a0f84bcbd4913c", "sandbox.smtp.mailtrap.io"));
 
-//			DataBaseAlmacenamiento properties = new DataBaseAlmacenamiento(
-//					"C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\TP1-OO2-Punto1-SistemaDeConcurso\\src\\main\\java\\properties\\database.properties");
+			// TENES QUE MODIFICAR EL PROPERTIES Y QUE FUNCIONE POR INYECCION DE DEPENDECIA
+
+			DataBaseAlmacenamiento properties = new DataBaseAlmacenamiento(
+					"C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\TP1-OO2-Punto1-SistemaDeConcurso\\src\\main\\java\\properties\\database.properties");
 
 			// COPIA REGISTROS EN .DATABASE
 
-//			Concurso miConcurso = new Concurso(1, "R.E.H Servicio Tecnico", fecha_inicio_inscripcion,
-//					fecha_fin_inscripcion,
-//					new BaseDeDatoGuardaDato(properties,
-//							"INSERT INTO registro (fecha, id_participante, id_concurso)" + "VALUES (?, ?, ?);"),
-//					new EmailRegistroNotificacion("524def57d07409", "a0f84bcbd4913c", "sandbox.smtp.mailtrap.io"));
+			Concurso miConcurso = new Concurso(1, "R.E.H Servicio Tecnico", fecha_inicio_inscripcion,
+					fecha_fin_inscripcion,
+					new BaseDeDatoGuardaDato(properties,
+							"INSERT INTO registro (fecha, id_participante, id_concurso)" + "VALUES (?, ?, ?);"),
+					new EmailRegistroNotificacion("524def57d07409", "a0f84bcbd4913c", "sandbox.smtp.mailtrap.io"));
 
 			miConcurso.inscribirParticipante(primerParticipante);
-//			miConcurso.inscribirParticipante(segundoParticipante);
-//			System.out.println(miConcurso.verPuntajeAcumulado(segundoParticipante));
+			miConcurso.inscribirParticipante(segundoParticipante);
 
-//			System.out.println(miConcurso);
-//		} catch (PropertiesExceptions e) {
-//			System.out.println(e.getMessage());
+		} catch (PropertiesExceptions e) {
+			System.out.println(e.getMessage());
 		} catch (ConcursoExceptions e) {
 			System.out.println(e.getMessage());
 		} catch (IOException e) {

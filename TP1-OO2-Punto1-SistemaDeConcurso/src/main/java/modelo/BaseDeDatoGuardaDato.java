@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 import exceptions.BaseDeDatosExceptions;
 import exceptions.GuardaDatoExceptions;
@@ -30,8 +31,11 @@ public class BaseDeDatoGuardaDato implements GuardaDato {
 
 			String[] parts = registro.split(" , ");
 
-			java.sql.Date fechaRegistro = java.sql.Date.valueOf(parts[0]);
-			state.setDate(1, fechaRegistro);
+//			java.sql.Date fechaRegistro = java.sql.Date.valueOf(parts[0]);
+//			state.setDate(1, fechaRegistro);
+
+			java.sql.Timestamp fechaRegistro = java.sql.Timestamp.valueOf(LocalDateTime.parse(parts[0]));
+			state.setTimestamp(1, fechaRegistro);
 
 			state.setInt(2, Integer.valueOf(parts[1]));
 

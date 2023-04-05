@@ -9,8 +9,8 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import exceptions.AlmacenamientoExceptions;
 import exceptions.ConcursoExceptions;
-import exceptions.PropertiesExceptions;
 import modelo.Concurso;
 import modelo.Participante;
 import properties.DataBaseAlmacenamiento;
@@ -61,8 +61,8 @@ class PruebasUnitarias {
 
 		try {
 
-			DataBaseAlmacenamiento properties = new DataBaseAlmacenamiento(
-					"C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\TP1-OO2-Punto1-SistemaDeConcurso\\src\\main\\java\\properties\\database.properties");
+			DataBaseAlmacenamiento properties = new DataBaseAlmacenamiento("jdbc:mysql://127.0.0.1/sistema_de_concurso",
+					"root", "");
 
 			Concurso miConcurso = new Concurso(1, "R.E.H Servicio Tecnico", fecha_inicio_inscripcion,
 					fecha_fin_inscripcion,
@@ -80,8 +80,8 @@ class PruebasUnitarias {
 			fail("exceptions FileNotFoundException");
 		} catch (IOException e) {
 			fail("exceptions IOException");
-		} catch (PropertiesExceptions e) {
-			fail("exceptions PropertiesExceptions");
+		} catch (AlmacenamientoExceptions e) {
+			fail("exceptions AlmacenamientoExceptions");
 		}
 	}
 

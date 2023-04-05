@@ -1,28 +1,37 @@
 package properties;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.util.Objects;
 import java.util.Properties;
 
-import exceptions.PropertiesExceptions;
+import exceptions.AlmacenamientoExceptions;
 import modelo.Almacenamiento;
 
 public class DataBaseAlmacenamiento implements Almacenamiento {
 
 	private Properties propiedades;
 
-	public DataBaseAlmacenamiento(String urlDataBaseProperties) throws PropertiesExceptions {
-		try {
-			propiedades = new Properties();
+//	"C:\\Users\\ezehu\\git\\TP1-OO2-Punto1-SistemaDeConcurso\\TP1-OO2-Punto1-SistemaDeConcurso\\src\\main\\java\\properties\\database.properties"
 
-			propiedades.load(new FileInputStream(urlDataBaseProperties));
+	public DataBaseAlmacenamiento(String urlBaseDeDatos, String usuario, String contrasena)
+			throws AlmacenamientoExceptions {
 
-		} catch (FileNotFoundException e) {
-			throw new PropertiesExceptions("Error, El archivo no exite");
-		} catch (IOException e) {
-			throw new PropertiesExceptions("Error, No se puede leer el archivo");
+		if (Objects.isNull(urlBaseDeDatos)) {
+			throw new AlmacenamientoExceptions("Datos nulos");
 		}
+
+		if (Objects.isNull(usuario)) {
+			throw new AlmacenamientoExceptions("Datos nulos");
+		}
+
+		if (Objects.isNull(contrasena)) {
+			throw new AlmacenamientoExceptions("Datos nulos");
+		}
+
+		propiedades = new Properties();
+
+		propiedades.put("url", urlBaseDeDatos);
+		propiedades.put("usuario", usuario);
+		propiedades.put("contrasena", contrasena);
 	}
 
 	public String get(String key) {
